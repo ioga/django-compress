@@ -16,10 +16,7 @@ COMPRESS_VERSIONING = getattr(settings, 'COMPRESS_VERSIONING', 'compress.version
 COMPRESS_CSS_FILTERS = getattr(settings, 'COMPRESS_CSS_FILTERS', ['compress.filters.csstidy.CSSTidyFilter'])
 COMPRESS_JS_FILTERS = getattr(settings, 'COMPRESS_JS_FILTERS', ['compress.filters.jsmin.JSMinFilter'])
 
-COMPRESS_CSS, COMPRESS_JS = {}, {}
-for compress_css, compress_js in autodiscover():
-    COMPRESS_CSS.update(compress_css)
-    COMPRESS_JS.update(compress_js)
+COMPRESS_CSS, COMPRESS_JS = reduce(lambda l,r: tuple((l[i].update(r[i]) or l[i] for i in (0, 1))), autodiscover(), ({}, {}))
 COMPRESS_CSS.update(getattr(settings, 'COMPRESS_CSS', {}))
 COMPRESS_JS.update(getattr(settings, 'COMPRESS_JS', {}))
 
