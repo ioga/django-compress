@@ -1,7 +1,7 @@
 from django.core.management.base import NoArgsCommand
 from optparse import make_option
 
-from django.conf import settings
+from compress.conf import settings
 
 class Command(NoArgsCommand):
     option_list = NoArgsCommand.option_list + (
