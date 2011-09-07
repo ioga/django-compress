@@ -1,3 +1,15 @@
+Motivation: previously, if you had some apps excluded from INSTALLED_APPS, 
+you should remove them from settings_compress, since synccompress would fail
+to find this files, because they had not been collected by collectstatic,
+which do check INSTALLED_APPS itself.
+
+This fork provides support for per-application COMPRESS_JS & COMPRESS_CSS
+settings, so you can define js & css groups in `your_app/settings_compress.py`
+like you did in global settings_compress. django-compress would collect
+per-application dictionaries and `.update` them into single global.
+
+---
+
 django-compress provides an automated system for compressing CSS and 
 JavaScript files. By default, it only outputs compressed files while not in 
 DEBUG-mode. That means you can still debug and edit your source files while 
@@ -21,3 +33,5 @@ source.
 [1] http://github.com/pelme/django-compress/tree/master
 [2] http://code.google.com/p/django-compress/
 [3] http://github.com/pelme/django-compress/tree/master/docs
+
+
