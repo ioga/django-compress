@@ -1,7 +1,8 @@
 ### Motivation
 Previously, if you had some apps excluded from `INSTALLED_APPS`, 
-you should remove them from `settings_compress`, since synccompress would fail
-to find this files, because they had not been collected by collectstatic,
+you should remove them from `settings_compress` or whereever you store your 
+settings for `django-compress` , since synccompress would fail to find this 
+files, because they had not been collected by collectstatic,
 which do check `INSTALLED_APPS` itself.
 
 ### Usage
@@ -9,6 +10,10 @@ This fork provides support for per-application `COMPRESS_JS` & `COMPRESS_CSS`
 settings, so you can define js & css groups in `your_app/settings_compress.py`
 like you did in global `settings_compress`. django-compress would collect
 per-application dictionaries and `.update` them into single global.
+
+### Why not just put this code into your project?
+- celery also does such stuff
+- less boilerplate code
 
 ---
 
